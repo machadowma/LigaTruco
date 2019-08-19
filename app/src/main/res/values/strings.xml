@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Liga Truco</string>
+    <string name="title_activity_jogador">Jogador</string>
+    <string name="title_activity_equipe">Equipe</string>
+    <string name="title_activity_partida">Partida</string>
+    <string name="title_activity_equipe_edit">Equipe</string>
+    <string-array name="pontos">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+</resources>
