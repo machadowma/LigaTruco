@@ -19,6 +19,58 @@ Exemplo de app com relacionamento 1xn e nxn. App android para cadastrar equipes 
 </tr>
 </table>
 
+<table>
+<tr align=center>
+<td><img src="https://github.com/machadowma/LigaTruco/blob/master/Diagrama.jpg" align="left"></td>
+</tr>
+<tr align=center>
+<td>Banco de dados</td>
+</tr>
+</table>
+
+Principais queries SQL:
+```
+-- Listar jogadores
+SELECT id,nome FROM jogador
+
+ Inserir jogador
+INSERT INTO jogador (nome) VALUES (?)
+
+-- Listar equipes
+SELECT id,nome FROM equipe
+
+-- Inserir equipe
+INSERT INTO equipe (nome) VALUES (?)
+
+-- Exibir dados de uma equipe
+SELECT id,nome FROM equipe WHERE id = ?
+
+-- Listar integrantes de uma equipe
+SELECT j.nome FROM equipe_jogador ej INNER JOIN jogador j ON j.id=ej.id_jogador WHERE ej.id_equipe = ?
+
+-- Listar jogadores que não são integrantes de uma equipe
+SELECT id,nome FROM jogador where id not in (select id_jogador from equipe_jogador WHERE id_equipe = ?)
+
+-- Inserir integrante em uma equipe
+INSERT INTO equipe_jogador (id_equipe, id_jogador) VALUES (?,?)
+
+-- Listar partidas
+SELECT
+p.id
+,p.data
+,e1.nome as nome_equipe_1
+,e2.nome as nome_equipe_2
+,p.pontos_equipe_1
+,p.pontos_equipe_2
+FROM partida p
+LEFT JOIN equipe e1 ON e1.id = p.id_equipe_1
+LEFT JOIN equipe e2 ON e2.id = p.id_equipe_2
+ORDER BY p.data
+
+-- Inserir partida
+INSERT INTO partida (data,id_equipe_1,pontos_equipe_1,id_equipe_2,pontos_equipe_2) VALUES (?,?,?,?,?)
+```
+
 # License
 
 MIT License
